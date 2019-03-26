@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import {MiddlewareConsumer, Module, NestModule} from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { WineController } from './wine/wine.controller';
@@ -8,6 +8,7 @@ import {Wine} from "./wine/wine.entity";
 import { LoginModule } from './login/login.module';
 import { AuthModule } from './auth/auth.module';
 import { WineModule } from './wine/wine.module';
+import {CorsMiddleware} from "./cors.middleware";
 
 
 
@@ -26,4 +27,8 @@ import { WineModule } from './wine/wine.module';
   controllers: [AppController, WineController],
   providers: [AppService, WineService],
 })
-export class AppModule {}
+export class AppModule implements NestModule{
+    configure(consumer: MiddlewareConsumer){
+        consumer.apply(CorsMiddleware).forRoutes('*')
+    }
+}

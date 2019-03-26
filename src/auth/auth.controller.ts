@@ -1,4 +1,4 @@
-import {Body, Controller, HttpStatus, Post, Response} from '@nestjs/common';
+import {Body, Controller, Header, HttpStatus, Post, Response} from '@nestjs/common';
 import {AuthService} from "./auth.service";
 import {LoginService} from "../login/login.service";
 import {Users} from "../login/users.entity";
@@ -28,7 +28,7 @@ export class AuthController {
         const user = await this.userService.getUserByUsername(body.username);
         if(user){
             if(await this.userService.compareHash(body.password, user.passwordHash)){
-                return res.status(HttpStatus.ACCEPTED).json(await this.authService.createToken(user.id, user.username))
+                return res.status(HttpStatus.ACCEPTED).json({token: 'Bearer '+await this.authService.createToken(user.id, user.username), username: user.username, email: user.email, userId: user.id})
             }
         }
         return res.status(HttpStatus.FORBIDDEN).json({ message: 'Username or password wrong!' });

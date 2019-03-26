@@ -8,7 +8,7 @@ export class AuthService {
     constructor(private readonly userService: LoginService){};
 
     async createToken(id: number, username: string){
-        const expiresIn = 60 * 60;
+        const expiresIn = 60 * 60* 24 * 365;
         const secretOrKey = 'secret';
         const user = {username};
         const token = jwt.sign(user, secretOrKey,{expiresIn});

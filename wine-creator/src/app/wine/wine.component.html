@@ -1,0 +1,14 @@
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let wine of wines | async">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{wine.name}}
+      </mat-panel-title>
+
+    </mat-expansion-panel-header>
+    <app-wine-list-detail [wineDetails]="setDetail(wine.id) | async"></app-wine-list-detail>
+  </mat-expansion-panel>
+
+
+</mat-accordion>
+

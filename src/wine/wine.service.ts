@@ -48,7 +48,8 @@ export class WineService {
         tmp.date = new Date(Date.now());
         tmp.sugar = sugaring.sugar;
         tmp.water = sugaring.water;
-        sugaring.wine = (await this.wineRepository.find({id:wineId}))[0];
+        tmp.wine = (await this.wineRepository.find({id:wineId}))[0];
+
         await this.connection.manager.save(tmp);
 
         return await this.wineRepository.createQueryBuilder('wine').where("wine.id=:id",{id: wineId}).leftJoinAndSelect("wine.sugaring", "sugaring").getOne();
