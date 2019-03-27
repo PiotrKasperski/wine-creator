@@ -23,11 +23,11 @@ import { Nav1Component } from './nav1/nav1.component';
     AppComponent,
     WineComponent,
     WineListDetailComponent,
-    AdressComponent,
-    TableComponent,
+
     NavComponent,
-    DashComponent,
-    Nav1Component
+
+    Nav1Component,
+
   ],
   imports: [
     BrowserModule,
