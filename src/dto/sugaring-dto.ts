@@ -1,4 +1,4 @@
 export class SugaringDto {
-    readonly sugar: num;
-    readonly id: number;
+  readonly sugar: num;
+  readonly id: number;
 }

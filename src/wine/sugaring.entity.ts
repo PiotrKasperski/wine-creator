@@ -1,22 +1,20 @@
-import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
-import {Wine} from "./wine.entity";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Wine } from './wine.entity';
 
 @Entity()
-export class Sugaring{
-    @PrimaryGeneratedColumn()
-    id: number;
+export class Sugaring {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    date: Date;
+  @Column()
+  date: Date;
 
-    @Column()
-    sugar: number;
+  @Column()
+  sugar: number;
 
-    @Column()
-    water: number;
+  @Column()
+  water: number;
 
-
-    @ManyToOne(type => Wine, wine => wine.sugaring)
-    wine: Wine;
-
+  @ManyToOne(type => Wine, wine => wine.sugaring)
+  wine: Wine;
 }

@@ -8,7 +8,7 @@ import {Observable} from "rxjs";
   styleUrls: ['./wine.component.scss']
 })
 export class WineComponent implements OnInit {
-  wines: Observable<Array<any>>;
+  wines: Observable<any>;
   constructor(private wineService: WineService) {
     this.wines = this.wineService.getWineList();
   }
@@ -16,6 +16,7 @@ export class WineComponent implements OnInit {
   ngOnInit() {
   }
   setDetail(id: number){
+    //console.log('id',id);
     return this.wineService.getWine(id);
   }
 

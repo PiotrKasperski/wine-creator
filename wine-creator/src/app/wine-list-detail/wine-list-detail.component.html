@@ -1,3 +1,6 @@
-<p>
-  Data nastawu: {{wineDetails.id}}
-</p>
+<div>
+<!-- // <p>{{wine.id}}</p>-->
+ <p> Data nastawu: {{wine.wineDetail.startDate | date:'medium'}}</p>
+  <p>  Poczatkowe Blg: {{wine.wineDetail.starterBlg}}</p>
+  <p>  Ilosc owocow: {{wine.wineDetail.fruitAmount}}kg</p>
+</div>

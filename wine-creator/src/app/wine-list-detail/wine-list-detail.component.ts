@@ -9,15 +9,21 @@ import {map} from "rxjs/operators";
   styleUrls: ['./wine-list-detail.component.scss']
 })
 export class WineListDetailComponent implements OnInit {
-  @Input() wineDetails: number;
-  wineDetails: any;
+  @Input() wineDetails: Observable<any>;
+  wine: any;
+
   constructor(private wineService: WineService) {
-    this.wineDetails = this.wineService.getWine(1);
+
+  }
+  getWineDetail():void{
+   this.wineDetails.subscribe(wine => {
+      this.wine = wine
+    })
   }
 
   ngOnInit() {
     //console.log(this.wineId);
-
+    this.getWineDetail();
     console.log(this.wineDetails);
   }
 
