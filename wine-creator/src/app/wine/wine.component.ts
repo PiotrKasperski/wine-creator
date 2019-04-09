@@ -22,5 +22,8 @@ export class WineComponent implements OnInit {
     return this.wineService.getWine(id);
   }
 
+  onAdded(wine) {
+    this.wines = this.wineService.getWineList();
+  }
 
 }
