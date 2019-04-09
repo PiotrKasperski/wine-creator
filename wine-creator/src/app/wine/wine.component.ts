@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {WineService} from "../services/wine.service";
 import {Observable} from "rxjs";
+
 
 @Component({
   selector: 'app-wine',
@@ -9,7 +10,8 @@ import {Observable} from "rxjs";
 })
 export class WineComponent implements OnInit {
   wines: Observable<any>;
-  constructor(private wineService: WineService) {
+
+  constructor(private wineService: WineService,) {
     this.wines = this.wineService.getWineList();
   }
 
@@ -19,5 +21,6 @@ export class WineComponent implements OnInit {
     //console.log('id',id);
     return this.wineService.getWine(id);
   }
+
 
 }

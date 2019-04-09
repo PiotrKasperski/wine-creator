@@ -1,11 +1,5 @@
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  OneToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
-import { Wine } from './wine.entity';
+import {Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn,} from 'typeorm';
+import {Wine} from './wine.entity';
 
 @Entity()
 export class WineDetail {
@@ -20,6 +14,9 @@ export class WineDetail {
 
   @Column()
   fruitAmount: number;
+
+    @Column()
+    starterCapacity: number;
 
   @OneToOne(type => Wine, wine => wine.wineDetail)
   @JoinColumn()

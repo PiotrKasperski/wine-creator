@@ -1,8 +1,7 @@
-import { Body, Controller, Get, Param, Post, Req } from '@nestjs/common';
-import { WineService } from './wine.service';
-import { CreateWineDto } from '../dto/create-wine-dto';
-import { Wine } from './wine.entity';
-import { Sugaring } from './sugaring.entity';
+import {Body, Controller, Get, Param, Post, Req} from '@nestjs/common';
+import {WineService} from './wine.service';
+import {Wine} from './wine.entity';
+import {Sugaring} from './sugaring.entity';
 
 @Controller('wine')
 export class WineController {
@@ -18,11 +17,11 @@ export class WineController {
   }
   @Post()
   async createWine(
-    @Req() req: any,
-    @Body() createWineDto: CreateWineDto,
+      @Req() req: any,
+      @Body() createWineDto: Wine,
   ): Promise<Wine> {
     console.log(req.user);
-    return await this.wineService.addWine(createWineDto.name, req.user);
+      return await this.wineService.addWine(createWineDto, req.user);
   }
   @Post(':id/addSugar')
   async addWineSuggaring(

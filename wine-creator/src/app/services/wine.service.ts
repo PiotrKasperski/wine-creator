@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,4 +16,10 @@ export class WineService {
   getWine(wineId: number){
     return this.http.get(this.wineUrl+'/'+wineId);
   }
+
+  addWine(wine) {
+    return this.http.post(this.wineUrl, wine)
+  }
 }
+
+

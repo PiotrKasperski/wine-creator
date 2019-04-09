@@ -1,13 +1,10 @@
-import { Injectable } from '@nestjs/common';
-
-import mock = jest.mock;
-import { Wine } from './wine.entity';
-import { Connection, Repository } from 'typeorm';
-import { InjectRepository } from '@nestjs/typeorm';
-import { WineDetail } from './wineDetail.entity';
-import { Users } from '../login/users.entity';
-import { Sugaring } from './sugaring.entity';
-import { win32 } from 'path';
+import {Injectable} from '@nestjs/common';
+import {Wine} from './wine.entity';
+import {Connection, Repository} from 'typeorm';
+import {InjectRepository} from '@nestjs/typeorm';
+import {WineDetail} from './wineDetail.entity';
+import {Users} from '../login/users.entity';
+import {Sugaring} from './sugaring.entity';
 
 @Injectable()
 export class WineService {
@@ -38,15 +35,17 @@ export class WineService {
       .leftJoinAndSelect('wine.wineDetail', 'wineDetail')
       .getOne();
   }
-  public async addWine(name: string, user: Users) {
+
+    public async addWine(wine: Wine, user: Users) {
     // console.log(await this.wineRepository.createQueryBuilder().insert().into(this.wineRepository).values([{name: name}]).execute());
     console.log(user);
     const tmp = new Wine();
     const tmpDetail = new WineDetail();
-    tmp.name = name;
-    tmpDetail.startDate = new Date(Date.now());
-    tmpDetail.fruitAmount = 5;
-    tmpDetail.starterBlg = 15;
+        tmp.name = wine.name;
+        tmpDetail.startDate = wine.wineDetail.startDate;
+        tmpDetail.fruitAmount = wine.wineDetail.fruitAmount;
+        tmpDetail.starterBlg = wine.wineDetail.starterBlg;
+        tmpDetail.starterCapacity = wine.wineDetail.starterCapacity;
     await this.connection.getRepository(WineDetail).save(tmpDetail);
 
     tmp.wineDetail = tmpDetail;
